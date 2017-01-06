@@ -1,2 +1,2 @@
 # ThermoTraining
-All thermo reaslted trainings
+All thermo related trainings
