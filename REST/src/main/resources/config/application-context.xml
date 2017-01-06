@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://cxf.apache.org/jaxrs
+       http://cxf.apache.org/schemas/jaxrs.xsd">
+
+        <!-- since spring is titghtly bound with jsxrx we need to import the related file -->
+       <import resource="classpath:META-INF/cxf/cxf.xml"/>
+       <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+
+        <bean id="messageService" class="com.thermofisher.training.MessageService"/>
+
+        <!-- tell the config file about the server -->
+        <jaxrs:server id="trainingServer" address="/api">
+            <!-- add the beans to be loaded -->
+            <jaxrs:serviceBeans>
+                <bean class="com.thermofisher.training.HelloWorldApiImpl"/>
+            </jaxrs:serviceBeans>
+
+            <!-- to include the json request/response in the server-->
+            <jaxrs:providers>
+                <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+            </jaxrs:providers>
+
+
+        </jaxrs:server>
+
+
+</beans>
